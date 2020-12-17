@@ -36,8 +36,8 @@ public class MyComplex {
     @Override
     public String toString(){
         if (imag<0)
-            return String.format("(\\f-\\fi)", real, Math.abs(imag));
-        return String.format("(\\f+\\fi)", real, Math.abs(imag));
+            return String.format("(%f-%fi)", real, Math.abs(imag));
+        return String.format("(%f+%fi)", real, Math.abs(imag));
     }
 
     /**
