@@ -46,6 +46,8 @@ public class MyPoint {
     }
 
     public double distance (MyPoint another){
+        if (another==null)
+            throw new NullPointerException();
         return distance(another.getX(), another.getY());
     }
 
