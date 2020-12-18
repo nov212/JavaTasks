@@ -40,19 +40,10 @@ public class MyComplex {
         return String.format("(%f+%fi)", real, Math.abs(imag));
     }
 
-    /**
-     * checks is the complex number contain real part
-     * @return true if yes, false if not
-     */
-
     public boolean isReal(){
         return real!=0;
     }
 
-    /**
-     * checks is the complex number contain imaginary part
-     * @return true if yes, false if not
-     */
 
     public boolean isImaginary(){
         return  imag!=0;
@@ -63,32 +54,36 @@ public class MyComplex {
     }
 
     public boolean equals(MyComplex another){
+        if (this==another)
+            return true;
         if (another==null)
             return false;
         return equals(another.getReal(), another.getImag());
     }
 
-    /**
-     * @return magnitude of the complex number
-     */
     public double magnitude(){
         return Math.sqrt(Math.pow(real,2)+Math.pow(imag,2));
     }
 
-    /**
-     *
-     * @return argument of this complex number in radians
-     */
-
     public double argument(){
-        return  0;
+        if (real==0 && imag==0)
+            throw new ArithmeticException("undefined value");
+        if (real!=0) {
+            double atan = Math.atan(imag / real);
+            if (real>0)
+                return atan;
+            else
+                if (imag>=0)
+                    return Math.PI+atan;
+            else
+                return  -Math.PI+atan;
+        }
+        else
+            if (imag>0)
+                return Math.PI/2;
+            else
+                return -Math.PI/2;
     }
-
-    /**
-     * add the given instance right into this instance
-     * @param right right argument
-     * @return this instance
-     */
 
     public MyComplex add(MyComplex right){
         if (right==null)
@@ -98,11 +93,6 @@ public class MyComplex {
         return this;
     }
 
-    /**
-     * subtract the given instance right into this instance
-     * @param right right argument
-     * @return this instance
-     */
 
     public MyComplex subtract(MyComplex right){
         if (right==null)
@@ -112,24 +102,15 @@ public class MyComplex {
         return this;
     }
 
-    /**
-     * multiply the given instance right into this instance
-     * @param right right argument
-     * @return this instance
-     */
+
     public MyComplex multiply(MyComplex right){
         if (right==null)
             throw new NullPointerException();
-        this.real=this.real*right.real-this.imag* right.imag;
-        this.imag=this.real* right.imag+this.imag*right.real;
+        this.real=this.real*right.getReal()-this.imag* right.getImag();
+        this.imag=this.real* right.getImag()+this.imag*right.getReal();
         return this;
     }
 
-    /**
-     * divide the given instance right into this instance
-     * @param right right argument
-     * @return this instance
-     */
     public MyComplex divide(MyComplex right){
         if (right==null)
             throw new NullPointerException();
@@ -143,42 +124,30 @@ public class MyComplex {
         return this;
     }
 
-    /**
-     * add this and right and return a new instance, this instance is not changed
-     * @param right right argument
-     * @return new instance
-     */
+
     public MyComplex addNew(MyComplex right){
         if (right==null)
             throw new NullPointerException();
         MyComplex newComplex=new MyComplex();
-        newComplex.real=this.real+right.real;
-        newComplex.imag=this.imag+right.imag;
+        newComplex.real=this.real+right.getReal();
+        newComplex.imag=this.imag+right.getImag();
         return newComplex;
     }
 
-    /**
-     * substract this and right and return a new instance, this instance is not changed
-     * @param right right argument
-     * @return new instance
-     */
+
     public MyComplex substractNew(MyComplex right){
         if (right==null)
             throw new NullPointerException();
         MyComplex newComplex=new MyComplex();
-        newComplex.real=this.real-right.real;
-        newComplex.imag=this.imag-right.imag;
+        newComplex.real=this.real-right.getReal();
+        newComplex.imag=this.imag-right.getImag();
         return newComplex;
     }
 
-    /**
-     * create a new complex number that conjugate on this instance
-     * @return new instance
-     */
     public MyComplex conjugate(){
         MyComplex conj=new MyComplex();
-        conj.real=this.real;
-        conj.imag=-1*this.imag;
+        conj.setReal(this.real);
+        conj.setImag(-this.imag);
         return conj;
     }
 

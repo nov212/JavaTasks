@@ -18,8 +18,7 @@ public class MyTriangle {
 
     @Override
     public String toString(){
-        String s="MyTriangle[v1=("+v1.getX()+","+v1.getY()+"),v2=("+v2.getX()+","+v2.getY()+"),v3=("+v3.getX()+","+v3.getY()+")]";
-        return  s;
+        return  String.format("MyTriangle[v1=(%d,%d),v2=(%d,%d),v3=(%d,%d)]", v1.getX(), v1.getY(), v2.getX(), v2.getY(), v3.getX(), v3.getX());
     }
 
     public double getPerimeter(){
@@ -37,7 +36,6 @@ public class MyTriangle {
                 return "equilateral";
             if (dist1==dist2 || dist1==dist3|| dist2==dist3)
                 return "isosceles";
-
         return "scalene";
     }
 }

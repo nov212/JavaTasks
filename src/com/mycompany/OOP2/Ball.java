@@ -1,21 +1,21 @@
 package com.mycompany.OOP2;
 
 public class Ball {
-    private float x;
-    private float y;
+    private double x;
+    private double y;
     private int radius;
-    private float xDelta;
-    private float yDelta;
+    private double xDelta;
+    private double yDelta;
 
     public Ball(float x, float y, int radius, int speed, int direction) {
         this.x = x;
         this.y = y;
         this.radius=radius;
-        xDelta=(float) (speed*Math.cos(direction));
-        yDelta=(float) (speed*Math.sin(direction));
+        xDelta=speed*Math.cos(Math.toRadians(direction));
+        yDelta=-speed*Math.sin(Math.toRadians(direction));
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
@@ -23,7 +23,7 @@ public class Ball {
         this.x = x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
@@ -39,7 +39,7 @@ public class Ball {
         this.radius = radius;
     }
 
-    public float getXDelta() {
+    public double getXDelta() {
         return xDelta;
     }
 
@@ -47,7 +47,7 @@ public class Ball {
         this.xDelta = xDelta;
     }
 
-    public float getYDelta() {
+    public double getYDelta() {
         return yDelta;
     }
 

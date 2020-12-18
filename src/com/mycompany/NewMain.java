@@ -7,11 +7,19 @@ public class NewMain {
 
 
     public static void main(String[] args) {
-        MyPolynomial mp=new MyPolynomial(0);
-        MyPolynomial mp1=new MyPolynomial(6,0,3,4);
-        MyPolynomial res=mp1.multiply(mp);
-        System.out.println(res.toString());
-        Ball b=new Ball(10,5,8,4,30);
-        System.out.println(b.toString());
+       Container container=new Container(0,0,100, 100);
+       Ball ball=new Ball(50,10,2,30, 30);
+        System.out.println("Ball in container:"+container.collides(ball));
+        ball.move();
+        ball.move();
+        System.out.println("New x:"+ball.getX());
+        System.out.println("New y:"+ball.getY());
+        System.out.println("Ball in container:"+container.collides(ball));
+        ball.reflectVertical();
+        ball.reflectHorizontal();
+        ball.move();
+        ball.move();
+        System.out.println("New x:"+ball.getX());
+        System.out.println("New y:"+ball.getY());
     }
     }
